@@ -1,0 +1,12 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    @apply w-full h-full
+}
+
+.nice-input {
+    @apply px-2 py-1 border border-neutral-200 w-full rounded focus:border-[#11a63c] hover:border-[#11a63c]
+        focus:shadow-[#11a63c] outline-0
+}
