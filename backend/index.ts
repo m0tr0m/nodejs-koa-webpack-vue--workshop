@@ -1,10 +1,10 @@
-const koa = require('koa')
-const koaRouter = require('koa-router')
+import koa from "koa"
+import koaRouter from "koa-router"
 
 const app = new koa()
 const router = new koaRouter()
 
-router.get('home', '/', (context) => {
+router.get('home', '/', (context: koa.Context) => {
     context.body = "Hallo Welt vom koa server"
 })
 
