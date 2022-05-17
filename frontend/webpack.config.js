@@ -1,24 +1,22 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const VueLoaderPlugin = require("vue-loader/lib/plugin");
+const { VueLoaderPlugin } = require('vue-loader')
 
 module.exports = {
     mode: "development",
-    entry: {
-        app: './src/main.ts'
-    },
+    entry: './src/main.ts',
     output: {
-        path: path.join(__dirname, '/dist'),
+        path: path.join(__dirname, 'dist'),
         filename: 'bundled.js'
     },
     devServer: {
         static: path.join(__dirname, 'dist'),
-        port: 8082,
+        port: 3000,
     },
     module: {
         rules: [
             {
-                test: /\.tsx?$/,
+                test: /\.ts$/,
                 exclude: /node_modules/,
                 loader: "ts-loader",
                 options: {
@@ -27,7 +25,6 @@ module.exports = {
             },
             {
                 test: /\.vue$/,
-                // include: path.resolve(__dirname, "src"),
                 use: 'vue-loader',
             },
             {
@@ -37,7 +34,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: [".ts", '.tsx', ".vue", ".json"],
+        extensions: [".js", ".ts", ".tsx", ".vue"],
     },
     plugins: [
         new VueLoaderPlugin(),
