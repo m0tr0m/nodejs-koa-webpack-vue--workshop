@@ -1,9 +1,10 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
-const { VueLoaderPlugin } = require('vue-loader')
+const {VueLoaderPlugin} = require('vue-loader')
 
 module.exports = {
     mode: "development",
+    devtool: 'source-map',
     entry: './src/main.ts',
     output: {
         path: path.join(__dirname, 'dist'),
@@ -29,12 +30,12 @@ module.exports = {
             },
             {
                 test: /\.css$/,
-                loader: 'css$-loader',
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
         ]
     },
     resolve: {
-        extensions: [".js", ".ts", ".tsx", ".vue"],
+        extensions: [".js", ".ts", ".tsx", ".vue", ".css"],
     },
     plugins: [
         new VueLoaderPlugin(),
