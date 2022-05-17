@@ -4,44 +4,44 @@ In diesem Turorial implementierst du ein nodejs-Backend "from Scratch". Du verwe
 Außerdem setzt du mit Hilfe von nodejs und webpack ein Frontend-Projekt auf (ebenfalls "from Scratch"), welches das Javascript-Framework vuejs nutzt, um dem Anwender ein Userinterface bereitzustellen. Um das Ganze abzurunden, wirst du sowohl für das Backend, als auch für das Frontend, ein kleinwenig Typescript verwenden. Vor allem aber wirst du Javascript, HTML und CSS verwenden.
 
 ### Optionale Hausaufgaben bevor es los geht
-Schaue dir dieses Video an, wenn du vorab die Javascript-Basics auffrischen/kennenlernen möchtest.
-https://www.youtube.com/watch?v=W6NZfCO5SIk
+Schaue dir dieses Video an, wenn du vorab die Javascript-Basics auffrischen/kennenlernen möchtest.<br>
+[![Javascript-Crash-Kurs](https://img.youtube.com/vi/W6NZfCO5SIk/0.jpg)](https://www.youtube.com/watch?v=W6NZfCO5SIk)
 
-Für einen Einstieg in nodejs empfehle ich dieses Video
-https://www.youtube.com/watch?v=TlB_eWDSMt4
+Für einen Einstieg in nodejs empfehle ich dieses Video.<br>
+[![nodejs-Crash-Kurs](https://img.youtube.com/vi/TlB_eWDSMt4/0.jpg)](https://www.youtube.com/watch?v=TlB_eWDSMt4)
 
-Um das koajs-Framwork besser einordnen zu können, empfehle ich, sich im ersten Schritt ein paar Kenntnisse für das nodejs-Framework [expressjs](https://expressjs.com/) auf zu bauen. Dazu habe ich natürlich auch wieder eine Empfehlung.
-https://www.youtube.com/watch?v=pKd0Rpw7O48
+Um das koajs-Framwork besser einordnen zu können, empfehle ich, sich im ersten Schritt ein paar Kenntnisse für das nodejs-Framework [expressjs](https://expressjs.com/) auf zu bauen. Dazu habe ich natürlich auch wieder eine Empfehlung.<br>
+[![nodejs-Crash-Kurs](https://img.youtube.com/vi/pKd0Rpw7O48/0.jpg)](https://www.youtube.com/watch?v=pKd0Rpw7O48)
 
-Nun gibt das folgende Video einen guten Eindruck vom kosjs-Framework
-https://www.youtube.com/watch?v=z84uTk5zmak
+Nun gibt das folgende Video einen guten Eindruck vom kosjs-Framework.<br>
+[![nodejs-Crash-Kurs](https://img.youtube.com/vi/z84uTk5zmak/0.jpg)](https://www.youtube.com/watch?v=z84uTk5zmak)
 
 ### Was brauche ich?
 * Eine aktuelle nodejs-Installation
 * Intellij, Webstorm oder VS Code
 * Eine Internetverbindung
 
-## Los gehts mit unserem kleinen Backend
-1. Erzeuge ein neues Verzeichnis `nodejs-koa-webpack-vue--workshop` an deinem Lieblingsplatz für neue Projekte.
+## Los gehts
+1. Erzeuge ein neues Verzeichnis `myapp` an deinem Lieblingsplatz für neue Projekte.
 ```
-mkdir nodejs-koa-webpack-vue--workshop
+mkdir myapp
 ```
 
-2. Geh in das zuvor angelegte Verzeichnis und lege darin ein weiteres Verzeichnis `nodejs-koa-webpack-vue--workshop\backend` an.
+2. Geh in das zuvor angelegte Verzeichnis und lege darin ein weiteres Verzeichnis `myapp\backend` an.
 ```
-cd nodejs-koa-webpack-vue--workshop
+cd myapp
 mkdir backend
 ```
 
-3. In dem Verzeichnis `nodejs-koa-webpack-vue--workshop\backend` führst du den nodejs-befehl `npm init` aus, um dein Backend-Projekt zu initialisieren. 
+3. In dem Verzeichnis `myapp\backend` führst du den nodejs-befehl `npm init` aus, um dein Backend-Projekt zu initialisieren. 
 Für diesen Workshop reicht es die darauf folgenden Fragen per Enter-Taste zu bestätigen.
 ```
 npm init
 ```
 
 4. Das Resultat sollten zwei Dateien sein:
-* `nodejs-koa-webpack-vue--workshop\backend\package.json`
-* `nodejs-koa-webpack-vue--workshop\backend\package-lock.json`
+* `myapp\backend\package.json`
+* `myapp\backend\package-lock.json`
 
 5. Jetzt installierst du die Pakete `nodemon`, `typescript`, `ts-node`, `koa` und `koa-router` wie folgt:
 ```
@@ -87,7 +87,7 @@ app.use(router.routes()).use(router.allowedMethods())// registering routes to th
 app.listen(2400, () => console.log('Server running at PORT 2400'))
 ```
 
-8. Nun starte den Server in der Konsole (Verzeichnis: `nodejs-koa-webpack-vue--workshop\backend\`)
+8. Nun starte den Server in der Konsole (Verzeichnis: `myapp\backend\`)
 ```
 npm run start
 ```
