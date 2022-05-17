@@ -3,20 +3,24 @@ In diesem Turorial implementierst du ein nodejs-Backend "from Scratch". Du verwe
 
 Außerdem setzt du mit Hilfe von nodejs und webpack ein Frontend-Projekt auf (ebenfalls "from Scratch"), welches das Javascript-Framework vuejs nutzt, um dem Anwender ein Userinterface bereitzustellen. Um das Ganze abzurunden, wirst du sowohl für das Backend, als auch für das Frontend, ein kleinwenig Typescript verwenden. Vor allem aber wirst du Javascript, HTML und CSS verwenden.
 
-### Optionale Hausaufgaben bevor es los geht
+---
+
+## Optionale Hausaufgaben bevor es los geht
 Schaue dir dieses Video an, wenn du vorab die Javascript-Basics auffrischen/kennenlernen möchtest.<br>
 [![Javascript-Crash-Kurs](https://img.youtube.com/vi/W6NZfCO5SIk/0.jpg)](https://www.youtube.com/watch?v=W6NZfCO5SIk)
 
-Für einen Einstieg in nodejs empfehle ich dieses Video.<br>
+#### Für einen Einstieg in nodejs empfehle ich dieses Video.<br>
 [![nodejs-Crash-Kurs](https://img.youtube.com/vi/TlB_eWDSMt4/0.jpg)](https://www.youtube.com/watch?v=TlB_eWDSMt4)
 
-Um das koajs-Framwork besser einordnen zu können, empfehle ich, sich im ersten Schritt ein paar Kenntnisse für das nodejs-Framework [expressjs](https://expressjs.com/) auf zu bauen. Dazu habe ich natürlich auch wieder eine Empfehlung.<br>
+#### Um das koajs-Framwork besser einordnen zu können, empfehle ich, sich im ersten Schritt ein paar Kenntnisse für das nodejs-Framework [expressjs](https://expressjs.com/) auf zu bauen. Dazu habe ich natürlich auch wieder eine Empfehlung.<br>
 [![nodejs-Crash-Kurs](https://img.youtube.com/vi/pKd0Rpw7O48/0.jpg)](https://www.youtube.com/watch?v=pKd0Rpw7O48)
 
-Nun gibt das folgende Video einen guten Eindruck vom kosjs-Framework.<br>
+#### Nun gibt das folgende Video um etwas über das kosjs-Framework zu erfahren.<br>
 [![nodejs-Crash-Kurs](https://img.youtube.com/vi/z84uTk5zmak/0.jpg)](https://www.youtube.com/watch?v=z84uTk5zmak)
 
-### Was brauche ich?
+---
+
+## Was brauche ich?
 * Eine aktuelle nodejs-Installation
 * Intellij, Webstorm oder VS Code
 * Eine Internetverbindung
