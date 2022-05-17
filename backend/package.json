@@ -10,6 +10,8 @@
   "license": "ISC",
   "dependencies": {
     "@types/koa": "^2.13.4",
+    "axios": "^0.27.2",
+    "js-base64": "^3.7.2",
     "koa": "^2.13.4",
     "koa-router": "^10.1.1",
     "nodemon": "^2.0.16",
