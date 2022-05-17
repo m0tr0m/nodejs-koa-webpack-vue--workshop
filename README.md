@@ -1,5 +1,5 @@
 ﻿# Willkommen
-In diesem Turorial implementierst du ein nodejs-Backend "from Scratch". Du verwendest das Framework [koajs|https://koajs.com/] um REST-Schnittstellen zu implementieren, welche per GraphQL-Schnittstelle des nscale Application Layer die An- und Abmeldung ermöglichen.
+In diesem Turorial implementierst du ein nodejs-Backend "from Scratch". Du verwendest das Framework koajs um REST-Schnittstellen zu implementieren, welche per GraphQL-Schnittstelle des nscale Application Layer die An- und Abmeldung ermöglichen.
 
 Außerdem setzt du mit Hilfe von nodejs und webpack ein Frontend-Projekt auf (ebenfalls "from Scratch"), welches das Javascript-Framework vuejs nutzt, um dem Anwender ein Userinterface bereitzustellen. Um das Ganze abzurunden, wirst du sowohl für das Backend, als auch für das Frontend, ein kleinwenig Typescript verwenden. Vor allem aber wirst du Javascript, HTML und CSS verwenden.
 
@@ -9,6 +9,12 @@ https://www.youtube.com/watch?v=W6NZfCO5SIk
 
 Für einen Einstieg in nodejs empfehle ich dieses Video
 https://www.youtube.com/watch?v=TlB_eWDSMt4
+
+Um das koajs-Framwork besser einordnen zu können, empfehle ich, sich im ersten Schritt ein paar Kenntnisse für das nodejs-Framework [expressjs](https://expressjs.com/) auf zu bauen. Dazu habe ich natürlich auch wieder eine Empfehlung.
+https://www.youtube.com/watch?v=pKd0Rpw7O48
+
+Nun gibt das folgende Video einen guten Eindruck vom kosjs-Framework
+https://www.youtube.com/watch?v=z84uTk5zmak
 
 ### Was brauche ich?
 * Eine aktuelle nodejs-Installation
