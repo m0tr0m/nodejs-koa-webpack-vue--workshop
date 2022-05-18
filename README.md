@@ -18,6 +18,9 @@ Schaue dir dieses Video an, wenn du vorab die Javascript-Basics auffrischen/kenn
 #### Nun gibt das folgende Video um etwas über das kosjs-Framework zu erfahren.<br>
 [![nodejs-Crash-Kurs](https://img.youtube.com/vi/z84uTk5zmak/0.jpg)](https://www.youtube.com/watch?v=z84uTk5zmak)
 
+#### Und zu guter letzt noch ein Video zum Thema Typescript.<br>
+[![nodejs-Crash-Kurs](https://img.youtube.com/vi/BCg4U1FzODs/0.jpg)](https://www.youtube.com/watch?v=BCg4U1FzODs)
+
 ---
 
 ## Was brauche ich?
@@ -49,7 +52,7 @@ npm init
 
 5. Jetzt installierst du die Pakete `nodemon`, `typescript`, `ts-node`, `koa` und `koa-router` wie folgt:
 ```
-npm i nodemon typescript ts-node koa koa-router
+npm i nodemon typescript ts-node koa koa-router jsonwebtoken @types/jsonwebtoken
 ```
 
 6. Jetzt hinterlegst du in der package.json -> start script
@@ -108,7 +111,7 @@ npm init
 
 3. Installier die folgenden npm-Pakete.
 ```
-npm i typescript webpack webpack-cli webpack-dev-server html-webpack-plugin vue@2.6.14 vue-loader@15.9.8 vue-style-loader vue-template-compiler css-loader ts-loader
+npm i typescript webpack webpack-cli webpack-dev-server html-webpack-plugin vue@2.6.14 vue-loader@15.9.8 vue-style-loader vue-template-compiler css-loader ts-loader axios
 ```
 
 4. Leg die Datei `\frontend\webpack.config.ts` an. 
