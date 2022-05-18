@@ -1,4 +1,3 @@
-
 <script lang="ts">
 import vue from 'vue'
 import Login from "./components/Login.vue";

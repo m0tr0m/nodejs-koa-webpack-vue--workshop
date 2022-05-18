@@ -4,15 +4,20 @@ const {VueLoaderPlugin} = require('vue-loader')
 
 module.exports = {
     mode: "development",
-    devtool: 'source-map',
-    entry: './src/main.ts',
+    devtool: 'source-map', // Beim build Prozess durch webpack werden hiermit auch source maps erstellt, welche das Debuggen im Browser erleichtern
+    entry: './src/main.ts', // Der Einstiegspunkt zum Build-Zeitpunkt
     output: {
         path: path.join(__dirname, 'dist'),
         filename: 'bundled.js'
     },
-    devServer: {
+    devServer: { // Einstellungen für den lokal gestarteten Web-Server
         static: path.join(__dirname, 'dist'),
-        port: 3000,
+        port: 3001,
+
+        /* Hier wird ein Proxy definiert, welcher alle Requests mit dem Kontext-Pfad '/api' an das
+        target weiterleitet. Der Teil '/api' wird dabei entfernt. So umgeht man bei der Entwicklung die
+        Same-Origin-Policy (SOP) von Web-Browsern
+        -> https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing#:~:text=Cross%2DOrigin%20Resource%20Sharing%20 */
         proxy: {
             "/api": {
                 target: "http://localhost:2400",
@@ -22,7 +27,10 @@ module.exports = {
             },
         },
     },
-    module: {
+    resolve: { // Hier wird definiert, welche Datei-Typen webpack bem Build-Prozess berücksichtigen soll
+        extensions: [".js", ".ts", ".tsx", ".vue", ".css"],
+    },
+    module: { // Hier wird definiert, wie webpack beim Build-Prozess die jeweiligen Datei-Typen laden soll
         rules: [
             {
                 test: /\.ts$/,
@@ -41,9 +49,6 @@ module.exports = {
                 use: ['style-loader', 'css-loader', 'postcss-loader'],
             },
         ]
-    },
-    resolve: {
-        extensions: [".js", ".ts", ".tsx", ".vue", ".css"],
     },
     plugins: [
         new VueLoaderPlugin(),
