@@ -7,12 +7,9 @@ const app = new Koa()
 const router = new KoaRouter()
 let cookie = null
 
-let napplLogin = async (ctx: Koa.Context, next: () => Promise<any>) => {
-
-    ctx.state.username = ctx.query.username
-    ctx.state.password = ctx.query.password
-
+router.post('login', '/login', async (ctx: Koa.Context, next: () => Promise<any>) => {
     try {
+        // Try to request login cookie with graphql
         const response = await axios({
             url: 'http://localhost:8080/nscalealinst1/graphql',
             method: 'post',
@@ -36,35 +33,31 @@ let napplLogin = async (ctx: Koa.Context, next: () => Promise<any>) => {
                 `,
             },
             headers: {
-                Authorization: `Basic ${Base64.toBase64(`${ctx.state.username}:${ctx.state.password}`)}`,
+                Authorization: `Basic ${Base64.toBase64(`${ctx.query.username}:${ctx.query.password}`)}`,
             }
         })
-        ctx.state.napplCookie = response.headers["set-cookie"][0]
-        ctx.state.napplResponseData = response.data.data
-        cookie = ctx.state.napplCookie
+
+        cookie = response.headers["set-cookie"][0]
+
+        let loginResponseData = {
+            username: ctx.query.username,
+            password: ctx.query.password,
+            napplCookie: cookie,
+            'nscale Application Layer response data': response.data.data
+        };
+
+        ctx.body = JSON.stringify(loginResponseData, null, 4)
     } catch (e) {
         ctx.status = 501
         ctx.body = JSON.stringify(e, null, 4)
     }
-
-    await next()
-};
-
-router.post('login', '/login', napplLogin, (ctx: Koa.Context) => {
-    const {username, password, napplCookie, napplResponseData} = ctx.state
-    ctx.body = JSON.stringify({username, password, napplCookie, 'nscale Application Layer response data': napplResponseData}, null, 4)
 })
 
 router.get('logout', '/logout', async (ctx: Koa.Context, next: () => Promise<any>) => {
-
-    ctx.state.username = null
-    ctx.state.password = null
-
     try {
         if(!cookie) {
             ctx.body = 'Not logged in'
         } else {
-            console.log(cookie)
             const response = await axios({
                 url: 'http://localhost:8080/nscalealinst1/graphql',
                 method: 'post',
