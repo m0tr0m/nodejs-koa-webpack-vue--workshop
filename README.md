@@ -411,7 +411,45 @@ npm start
 ```
 Es öffnet sich der Web-Browser und du siehst die Überschrift `Hallo myapp`.
 
+---
 
+### Du erinnerst dich sicher. Das Ziel war eine App, mit welcher wir uns per GraphQL am nscale Application Layer anmelden können. Also dann - Weiter gehts...
+
+1. Erstelle ein neues Verzeichnis `myapp\frontend\src\components`
+
+2. Erstelle dort eine neue Datei `myapp\frontend\src\components\Login.vue`
+```vue
+<template>
+  <h2>Login</h2>
+</template>
+
+<script>
+export default {
+  name: "Login"
+}
+</script>
+```
+
+3. Jetzt musst du die neue Komponente in der `myapp\frontend\src\App.vue` wie folgt importieren, registrieren und schluss endlich natürlich auch verwenden.
+```vue
+<script lang="ts">
+import vue from 'vue'
+import Login from "./components/Login.vue"; // importieren
+
+export default vue.extend({
+  name: 'app',
+  components: {Login} // registrieren
+})
+</script>
+
+<template>
+    <Login></Login> <!-- verwenden -->
+</template>
+```
+
+### Ohne einen Neustart des Webservers solltest du jetzt, unter der Überschrift `Hallo myapp` den Text `Login` sehen.
+
+---
 
 https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547 
 https://tailwindcss.com/docs/guides/vite
