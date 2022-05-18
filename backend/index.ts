@@ -39,7 +39,7 @@ router.post('login', '/login', async (ctx: Koa.Context, next: () => Promise<any>
 
         cookie = response.headers["set-cookie"][0]
 
-        let loginResponseData = {
+        const loginResponseData = {
             username: ctx.query.username,
             password: ctx.query.password,
             napplCookie: cookie,

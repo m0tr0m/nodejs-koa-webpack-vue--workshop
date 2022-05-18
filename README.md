@@ -174,7 +174,7 @@ router.post('login', '/login', async (ctx: Koa.Context, next: () => Promise<any>
 
         cookie = response.headers["set-cookie"][0]
 
-        let loginResponseData = {
+        const loginResponseData = {
             username: ctx.query.username,
             password: ctx.query.password,
             napplCookie: cookie,
@@ -192,14 +192,18 @@ router.post('login', '/login', async (ctx: Koa.Context, next: () => Promise<any>
 Jetzt macht die `login`-Route bereits was sie verspricht. Sie setzt einen Request an den nscale Application Layer ab, welcher lokal auf dem Port 
 8080 läuft. Dabei wird GraphQL übertragen und über den request header `Authentication` mit den User-Credentials im nscale Application Layer authentifiziert. 
 Die Credentials werden (in diesem Beispiel) im Request als sogenannte Query-Parameter übertragen. <br>Als Antwort vom nscale Application Layer erhalten wir 
-den Session-Cookie, welcher über `response.headers["set-cookie"][0]` abgefragt werden kann. Dieser wird in der zuvor angelegten Variable `cookie` gespeichert.
+den Session-Cookie, welcher über `response.headers["set-cookie"][0]` abgefragt werden kann. Dieser wird in der zuvor angelegten Variable `cookie` gespeichert. 
+Es sei noch erwähnt, dass ich die Set-Cookie-Header Thematik in diesem Tutorial bewusst nicht bis in den Browser transportiere, um das Ganze möglichst Schmal.  
+<br>
+Abschließend wird eine Variable `loginResponseData` mit all den Informationen bestückt, welche dem anfragenden Client per bereitgestellt werden sollen. 
+Dazu später mehr.  
 
 Eine entsprechende Url ist z.B.:
 ```
 http://localhost:2400/login?username=admin@nscale&password=nscale
 ```
 
-Natürlich muss auch ein Logout ermöglicht werden. Dazu passen wir auch die `logout`-Route an.
+Natürlich muss auch ein Logout ermöglicht werden. Dazu passt du auch die `logout`-Route an.
 ```typescript
 router.get('logout', '/logout', async (ctx: Koa.Context, next: () => Promise<any>) => {
     try {
@@ -237,10 +241,21 @@ router.get('logout', '/logout', async (ctx: Koa.Context, next: () => Promise<any
 })
 ```
 
+Damit ist der angemeldete Client in der Lage die per Login geöffnete Session im nscale Application Layer zu invalidieren. 
+Dazu wird der entsprechende Request zum nscale Application Layer abgesetzt und dann der beim Login persistierte Session-Cookie 
+in der Variable `cookie` auf `null` gesetzt. Als Response erhält der anfragende Client auch hier wieder einen Text, 
+welcher der Antwort vom nscale Application Layer entspricht.
+
+Die Url ist:
+```
+http://localhost:2400/logout
+```
+
+### Damit hast du deinen Backend-Server für die Anforderung des bevorstehenden UI's vorbereitet.
 
 ---
 
-# Weiter gehts mit unserem Frontend - webpack, typescript, und vuejs
+# Weiter gehts mit dem Frontend
 
 1. Lege im root-Verzeichnis einen neuen Ordner `frontend` an.
 
