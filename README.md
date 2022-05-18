@@ -257,11 +257,11 @@ http://localhost:2400/logout
 
 # Weiter gehts mit dem Frontend
 
-1. Lege im root-Verzeichnis einen neuen Ordner `frontend` an.
+1. Lege im root-Verzeichnis einen neuen Ordner `myapp\frontend` an.
 
-2. Mit folgendem Befehlen initialisierst du auch im neu angelegten Verzeichnis `frontend` ein neues nodejs-Projekt.
+2. Mit folgendem Befehlen initialisierst du auch im neu angelegten Verzeichnis `myapp\frontend` ein neues nodejs-Projekt.
 ``` 
-npm init
+npm init -y
 ```
 
 3. Installier die folgenden npm-Pakete.
