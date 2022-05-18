@@ -13,6 +13,14 @@ module.exports = {
     devServer: {
         static: path.join(__dirname, 'dist'),
         port: 3000,
+        proxy: {
+            "/api": {
+                target: "http://localhost:2400",
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: (path) => path.replace(/^\/api/, ""),
+            },
+        },
     },
     module: {
         rules: [
