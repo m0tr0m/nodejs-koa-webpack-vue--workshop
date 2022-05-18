@@ -29,12 +29,12 @@ Schaue dir dieses Video an, wenn du vorab die Javascript-Basics auffrischen/kenn
 * Eine Internetverbindung
 
 ## Los gehts
-1. Erzeuge ein neues Verzeichnis `myapp` an deinem Lieblingsplatz für neue Projekte.
+1. Erstell ein neues Verzeichnis `myapp` an deinem Lieblingsplatz für neue Projekte.
 ```
 mkdir myapp
 ```
 
-2. Geh in das zuvor angelegte Verzeichnis und lege darin ein weiteres Verzeichnis `myapp\backend` an.
+2. Geh in das zuvor angelegte Verzeichnis und erstell darin ein weiteres Verzeichnis `myapp\backend` an.
 ```
 cd myapp
 mkdir backend
@@ -257,19 +257,160 @@ http://localhost:2400/logout
 
 # Weiter gehts mit dem Frontend
 
-1. Lege im root-Verzeichnis einen neuen Ordner `myapp\frontend` an.
+1. Erstelle ein weiteres Verzeichnis `myapp\frontend`.
 
 2. Mit folgendem Befehlen initialisierst du auch im neu angelegten Verzeichnis `myapp\frontend` ein neues nodejs-Projekt.
 ``` 
 npm init -y
 ```
+Auch in der hierdurch erzeugte Datei `myapp\frontend\package.json` ergänzen wir ein `script`
+```json
+...
+  "scripts": {
+    "start": "webpack-dev-server --mode development --open --hot"
+  },
+...
+```
+`--open` sorgt dafür, dass bei der Ausführung der Web-Browser automatisch geöffnet wird. `--hot` entspricht dem Benefit von dem im backend verwendeten Tool `nodemon` - Hot-Reloading bei Änderungen der Projekt-Ressourcen.
 
-3. Installier die folgenden npm-Pakete.
+3. Installiere nun die folgenden npm-Pakete.
 ```
 npm i typescript webpack webpack-cli webpack-dev-server html-webpack-plugin vue@2.6.14 vue-loader@15.9.8 vue-style-loader vue-template-compiler css-loader ts-loader axios
 ```
 
-4. Leg die Datei `\frontend\webpack.config.ts` an. 
+4. Erstell die Datei `\frontend\webpack.config.js` mit folgendem Inhalt (Siehe inline-Doku).
+```javascript
+const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
+const {VueLoaderPlugin} = require('vue-loader')
+
+module.exports = {
+    mode: "development",
+    devtool: 'source-map', // Beim build Prozess durch webpack werden hiermit auch source maps erstellt, welche das Debuggen im Browser erleichtern
+    entry: './src/main.ts', // Der Einstiegspunkt zum Build-Zeitpunkt
+    output: {
+        path: path.join(__dirname, 'dist'),
+        filename: 'bundled.js'
+    },
+    devServer: { // Einstellungen für den lokal gestarteten Web-Server
+        static: path.join(__dirname, 'dist'),
+        port: 3001,
+
+        /* Hier wird ein Proxy definiert, welcher alle Requests mit dem Kontext-Pfad '/api' an das
+        target weiterleitet. Der Teil '/api' wird dabei entfernt. So umgeht man bei der Entwicklung die
+        Same-Origin-Policy (SOP) von Web-Browsern
+        -> https://de.wikipedia.org/wiki/Cross-Origin_Resource_Sharing#:~:text=Cross%2DOrigin%20Resource%20Sharing%20 */
+        proxy: {
+            "/api": {
+                target: "http://localhost:2400",
+                changeOrigin: true,
+                secure: false,
+                pathRewrite: (path) => path.replace(/^\/api/, ""),
+            },
+        },
+    },
+    resolve: { // Hier wird definiert, welche Datei-Typen webpack bem Build-Prozess berücksichtigen soll
+        extensions: [".js", ".ts", ".tsx", ".vue", ".css"],
+    },
+    module: { // Hier wird definiert, wie webpack beim Build-Prozess die jeweiligen Datei-Typen laden soll
+        rules: [
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                loader: "ts-loader",
+                options: {
+                    appendTsSuffixTo: [/\.vue$/],
+                },
+            },
+            {
+                test: /\.vue$/,
+                use: 'vue-loader',
+            },
+            {
+                test: /\.css$/,
+                use: ['style-loader', 'css-loader', 'postcss-loader'],
+            },
+        ]
+    },
+    plugins: [ 
+        new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        })
+    ]
+}
+```
+
+5. Nun erstellst du ein neues Verzeichnis `myapp\frontend\src`
+
+6. Folgende Dateien erstellst du jetzt dort 
+* shim-vue.d.ts
+* index.html
+* main.ts
+* App.vue
+* style.css
+
+Folgende Inhalte fügst du ein:
+
+`shim-vue.d.ts`
+```typescript
+// sfc support
+declare module "*.vue" {
+  import Vue from "vue";
+  export default Vue;
+}
+```
+
+`index.html`
+```html
+<!DOCTYPE html>
+<html lang="de">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>myapp</title>
+    </head>
+    <body>
+        <div id="app"></div>
+    </body>
+</html>
+```
+
+`main.ts`
+```typescript
+import Vue from 'vue';
+import App from './App.vue';
+import './style.css';
+
+new Vue({
+    render: (h) => h(App),
+}).$mount('#app')
+```
+
+`App.vue`
+```vue
+<script lang="ts">
+import vue from 'vue'
+
+export default vue.extend({
+  name: 'app',
+  components: {}
+})
+</script>
+
+<template>
+    <h1>Hallo myapp</h1>
+</template>
+```
+
+Die Datei `style.css` kann an dieser Stelle noch leer bleiben.
+
+7. Jetzt startest du den Frontend-Webserver
+```
+npm start
+```
+Es öffnet sich der Web-Browser und du siehst die Überschrift `Hallo myapp`.
+
 
 
 https://levelup.gitconnected.com/setup-tailwind-css-with-webpack-3458be3eb547 
