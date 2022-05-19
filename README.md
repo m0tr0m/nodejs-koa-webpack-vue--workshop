@@ -6,7 +6,7 @@ Außerdem setzt du mit Hilfe von nodejs und webpack ein Frontend-Projekt auf (eb
 ---
 
 ## Quick start
-Im Root-Verzeichis `\webapp-wth--vue`
+Im Root-Verzeichis `\webapp-wth-vue`
 
 1. Lass NPM alle Abhängigkeiten installieren.
 ```
